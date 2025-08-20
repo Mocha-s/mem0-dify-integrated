@@ -19,6 +19,22 @@ class RetrieveMem0Tool(Tool):
             "query": tool_parameters["query"],
             "user_id": tool_parameters["user_id"]
         }
+        
+        # Add optional V2 search parameters if provided
+        if "filters" in tool_parameters:
+            # Parse filters from JSON string to dict
+            import json
+            filters_str = tool_parameters["filters"]
+            if filters_str:
+                try:
+                    payload["filters"] = json.loads(filters_str)
+                except json.JSONDecodeError:
+                    # If JSON parsing fails, treat as a simple string
+                    payload["filters"] = filters_str
+        if "limit" in tool_parameters:
+            payload["limit"] = tool_parameters["limit"]
+        if "offset" in tool_parameters:
+            payload["offset"] = tool_parameters["offset"]
 
         # 记录请求信息
         query_preview = payload["query"][:50] + "..." if len(payload["query"]) > 50 else payload["query"]
@@ -29,8 +45,16 @@ class RetrieveMem0Tool(Tool):
         
         # Make direct HTTP request to mem0 API
         try:
+            # Use V2 search endpoint if filters are provided, otherwise use V1
+            if "filters" in payload or "limit" in payload or "offset" in payload:
+                endpoint = f"{api_url}/v1/memories/search/v2/"
+                print(f"[Mem0 Plugin] 使用 V2 搜索端点: {endpoint}")
+            else:
+                endpoint = f"{api_url}/v1/memories/search/"
+                print(f"[Mem0 Plugin] 使用 V1 搜索端点: {endpoint}")
+                
             response = httpx.post(
-                f"{api_url}/v1/memories/search/",
+                endpoint,
                 json=payload,
                 headers={"Authorization": f"Token {api_key}"},
                 timeout=30
@@ -71,11 +95,20 @@ class RetrieveMem0Tool(Tool):
                 if not isinstance(r, dict):
                     continue
                     
+                # Handle cases where id might not be present in search results
+                # Try multiple possible field names for memory ID
+                memory_id = r.get("id") or r.get("memory_id") or r.get("memoryId") or "unknown"
+                
+                # Handle categories - ensure it's a list
+                categories = r.get("categories", [])
+                if not isinstance(categories, list):
+                    categories = [categories] if categories else []
+                
                 item = {
-                    "id": r.get("id", "unknown"),
+                    "id": memory_id,
                     "memory": r.get("memory", ""),
                     "score": r.get("score", 0.0),
-                    "categories": r.get("categories", []),
+                    "categories": categories,
                     "created_at": r.get("created_at", "")
                 }
                 processed_results.append(item)
@@ -98,6 +131,7 @@ class RetrieveMem0Tool(Tool):
                 for idx, r in enumerate(processed_results, 1):
                     text_response += f"\n{idx}. Memory: {r['memory']}"
                     text_response += f"\n   Score: {r['score']:.2f}"
+                    text_response += f"\n   ID: {r['id']}"
                     text_response += f"\n   Categories: {', '.join(r.get('categories', []))}"
             else:
                 text_response += "\nNo results found."

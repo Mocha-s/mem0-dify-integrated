@@ -42,6 +42,12 @@ The collected information is used for:
 - Data access is limited to essential service operations
 - API access requires authentication via API keys
 
+### User Rights and Control
+
+- Users can add, retrieve, update, and delete their memory data
+- Users can delete all their data at any time
+- Users can access their data through the mem0 API
+
 ### Changes to Privacy Policy
 
 We may update this privacy policy from time to time. We will notify users of any material changes through our official channels.

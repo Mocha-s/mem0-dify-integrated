@@ -48,6 +48,8 @@ credentials_for_provider:
 tools:
   - tools/add_memory.yaml
   - tools/retrieve_memory.yaml
+  - tools/delete_memory.yaml
+  - tools/update_memory.yaml
 extra:
   python:
     source: provider/mem0.py 

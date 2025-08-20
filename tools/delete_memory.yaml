@@ -1,0 +1,43 @@
+identity:
+  name: delete_mem0ai_memory
+  author: blue
+  label:
+    en_US: Delete Memory
+    zh_Hans: 删除内存
+    pt_BR: Excluir Memória
+description:
+  human:
+    en_US: Delete memory support
+    zh_Hans: 删除内存支持
+    pt_BR: Suporte para exclusão de memória
+  llm: Delete memory support
+parameters:
+  - name: user_id
+    type: string
+    required: true
+    label:
+      en_US: User ID
+      zh_Hans: 用户ID
+      pt_BR: ID do Usuário
+    human_description:
+      en_US: User ID
+      zh_Hans: 用户ID
+      pt_BR: ID do Usuário
+    llm_description: User ID
+    form: llm
+  - name: memory_id
+    type: string
+    required: false
+    label:
+      en_US: Memory ID
+      zh_Hans: 内存ID
+      pt_BR: ID da Memória
+    human_description:
+      en_US: Memory ID (optional, if not provided all memories for the user will be deleted)
+      zh_Hans: 内存ID（可选，如果不提供将删除用户的所有内存）
+      pt_BR: ID da Memória (opcional, se não fornecido, todas as memórias do usuário serão excluídas)
+    llm_description: Memory ID (optional, if not provided all memories for the user will be deleted)
+    form: llm
+extra:
+  python:
+    source: tools/delete_memory.py

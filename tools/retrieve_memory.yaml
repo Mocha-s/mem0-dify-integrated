@@ -38,6 +38,45 @@ parameters:
       pt_BR: ID do Usuário
     llm_description: User ID
     form: llm
+  - name: filters
+    type: string
+    required: false
+    label:
+      en_US: Filters
+      zh_Hans: 过滤器
+      pt_BR: Filtros
+    human_description:
+      en_US: Advanced filters for V2 search (optional, JSON format)
+      zh_Hans: V2搜索的高级过滤器（可选，JSON格式）
+      pt_BR: Filtros avançados para pesquisa V2 (opcional, formato JSON)
+    llm_description: Advanced filters for V2 search (optional, JSON format)
+    form: llm
+  - name: limit
+    type: number
+    required: false
+    label:
+      en_US: Limit
+      zh_Hans: 限制
+      pt_BR: Limite
+    human_description:
+      en_US: Maximum number of results to return (optional)
+      zh_Hans: 返回结果的最大数量（可选）
+      pt_BR: Número máximo de resultados a serem retornados (opcional)
+    llm_description: Maximum number of results to return (optional)
+    form: llm
+  - name: offset
+    type: number
+    required: false
+    label:
+      en_US: Offset
+      zh_Hans: 偏移量
+      pt_BR: Deslocamento
+    human_description:
+      en_US: Offset for pagination (optional)
+      zh_Hans: 分页的偏移量（可选）
+      pt_BR: Deslocamento para paginação (opcional)
+    llm_description: Offset for pagination (optional)
+    form: llm
 extra:
   python:
     source: tools/retrieve_memory.py
