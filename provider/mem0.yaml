@@ -20,21 +20,34 @@ credentials_for_provider:
       zh_Hans: Mem0 API Key
       pt_BR: Mem0 API key
     placeholder:
-      en_US: Please input your Mem0 API key
-      zh_Hans: 请输入你的 Mem0 API Key
-      pt_BR: Please input your Mem0 API key
+      en_US: "Please input your Mem0 API key"
+      zh_Hans: "请输入你的 Mem0 API Key"
+      pt_BR: "Please input your Mem0 API key"
     help:
-      en_US: Please visit the Mem0 AI Dashboard to register an account and apply for an API key
-      zh_Hans: 请访问 Mem0 AI 仪表板注册账号并获取 API Key
-      pt_BR: Please visit the Mem0 AI Dashboard to register an account and apply for an API key
+      en_US: "Please visit the Mem0 AI Dashboard to register an account and apply for an API key"
+      zh_Hans: "请访问 Mem0 AI 仪表板注册账号并获取 API Key"
+      pt_BR: "Please visit the Mem0 AI Dashboard to register an account and apply for an API key"
     url: https://app.mem0.ai/dashboard/api-keys
-
+  mem0_api_url:
+    type: text-input
+    required: false
+    default: "https://api.mem0.ai"
+    label:
+      en_US: Mem0 API URL
+      zh_Hans: Mem0 API 地址
+      pt_BR: Mem0 API URL
+    placeholder:
+      en_US: "Please input your Mem0 API URL"
+      zh_Hans: "请输入你的 Mem0 API 地址"
+      pt_BR: "Please input your Mem0 API URL"
+    help:
+      en_US: "Custom API URL for Mem0 API"
+      zh_Hans: "自定义 Mem0 API 地址"
+      pt_BR: "Custom API URL for Mem0 API"
 
 tools:
   - tools/add_memory.yaml
   - tools/retrieve_memory.yaml
 extra:
   python:
-    source: provider/mem0.py
-
-
+    source: provider/mem0.py 

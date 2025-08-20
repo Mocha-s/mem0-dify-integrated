@@ -28,6 +28,16 @@ client = MemoryClient(api_key="your-api-key")
 
 ![dashboard](./_assets/dashboard.png)
 
+### Configuration
+
+#### API Key
+Required for authentication with the mem0 API.
+
+#### API URL (Optional)
+You can specify a custom API URL if you're using a self-hosted instance or a different endpoint:
+- Default: `https://api.mem0.ai`
+- Format: Enter the base URL without trailing slash (e.g., `https://your-custom-api.example.com`)
+
 ### Memory Actions
 
 #### add_memory

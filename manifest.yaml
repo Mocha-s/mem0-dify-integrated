@@ -1,12 +1,12 @@
-version: 0.0.2
+version: 0.0.1
 type: plugin
-author: yevanchen
-name: mem0
+author: blue
+name: mem0_cloud
 label:
-  en_US: mem0
-  ja_JP: mem0
-  zh_Hans: mem0
-  pt_BR: mem0
+  en_US: MEM0
+  ja_JP: MEM0
+  zh_Hans: MEM0
+  pt_BR: MEM0
 description:
   en_US: Dify integration for mem0
   ja_JP: mem0のDify統合
@@ -30,6 +30,6 @@ meta:
     language: python
     version: "3.12"
     entrypoint: main
-created_at: 2025-02-24T15:05:39.306706+08:00
+created_at: 2025-06-16T00:55:22.311201+08:00
 privacy: PRIVACY.md
 verified: false
